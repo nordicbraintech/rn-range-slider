@@ -1,6 +1,5 @@
 import React, { memo, useState, useEffect, useCallback, useMemo, useRef } from 'react';
-import { Animated, PanResponder, View, ViewPropTypes } from 'react-native';
-import PropTypes from 'prop-types';
+import { Animated, PanResponder, View } from 'react-native';
 
 import styles from './styles';
 import {useThumbFollower, useLowHigh, useWidthLayout, useLabelContainerProps, useSelectedRail} from './hooks';
@@ -12,14 +11,14 @@ const Slider = (
   {
     min,
     max,
-    minRange,
+    minRange = 0,
     step,
     low: lowProp,
     high: highProp,
-    floatingLabel,
-    allowLabelOverflow,
-    disableRange,
-    disabled,
+    floatingLabel = false,
+    allowLabelOverflow = false,
+    disableRange = false,
+    disabled = false,
     onValueChanged,
     onTouchStart,
     onTouchEnd,
@@ -203,37 +202,6 @@ const Slider = (
       </View>
     </View>
   );
-};
-
-Slider.propTypes = {
-  ...ViewPropTypes,
-  min: PropTypes.number.isRequired,
-  max: PropTypes.number.isRequired,
-  minRange: PropTypes.number,
-  step: PropTypes.number.isRequired,
-  renderThumb: PropTypes.func.isRequired,
-  low: PropTypes.number,
-  high: PropTypes.number,
-  allowLabelOverflow: PropTypes.bool,
-  disableRange: PropTypes.bool,
-  disabled: PropTypes.bool,
-  floatingLabel: PropTypes.bool,
-  renderLabel: PropTypes.func,
-  renderNotch: PropTypes.func,
-  renderRail: PropTypes.func.isRequired,
-  renderRailSelected: PropTypes.func.isRequired,
-  onValueChanged: PropTypes.func,
-  onTouchStart: PropTypes.func,
-  onTouchEnd: PropTypes.func,
-  value:PropTypes.number
-};
-
-Slider.defaultProps = {
-  minRange: 0,
-  allowLabelOverflow: false,
-  disableRange: false,
-  disabled: false,
-  floatingLabel: false,
 };
 
 export default memo(Slider);
